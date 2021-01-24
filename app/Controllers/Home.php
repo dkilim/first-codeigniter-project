@@ -162,7 +162,7 @@ class Home extends BaseController {
 
 			];
 			
-			if ($this->request->getPost('password') !='') {
+			if ($this->request->getPost('password') !='' || $this->request->getPost('opassword') !='' || $this->request->getPost('cpassword') !='') {
 				$rules=[
 					'opassword' => 'required|min_length[8]|max_length[255]|vaolidateOldPassword[opassword,username]',
 					'password' => 'required|min_length[8]|max_length[255]',
@@ -172,13 +172,12 @@ class Home extends BaseController {
 				/** create validate for old password */
                 $errors['opassword']=['vaolidateOldPassword' => 'Incorect old password!'];
                 
-				$path='/';
-				$session->set('isLoggedIn', false);
+				
 			}
 
 
             if ( ! $this->validate($rules,$errors)) {
-                $data['validation']= $this->validator;
+                $data['validation']= $this->validator;   
             }else {
                 $newUser=[
 					'id'  => session()->get('id'),
@@ -191,7 +190,9 @@ class Home extends BaseController {
 				];
 
 				if ($this->request->getPost('password') !='') {
-					$newUser['password']= $this->request->getPost('password');
+                    $newUser['password']= $this->request->getPost('password');
+                    $path='/';
+                    $session->set('isLoggedIn', false);
 				}
 				
 
