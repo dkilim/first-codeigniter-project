@@ -1,7 +1,6 @@
 <section class="container-fluid bg">
     <section class="row justify-content-center">
-        <section class="col-12 col-sm-6 col-md-3 mobile form-container">
-            
+        <section class="col-12 col-sm-6 col-md-3 mobile form-container">           
             
             <div>
                 <h3 class="lgicon"><i class="fas fa-user-circle"></i></h3>
