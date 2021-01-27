@@ -27,4 +27,28 @@ class UserModel extends Model{
 
         return $data;
     }
+
+    public function select($id){
+        return $query =  $this->table('users')->where('id',$id)->first(); 
+    
+    }
+    ///////////////////--- TEST ---\\\\\\\\\\\\\\\\\\\\\\
+    // public function add_user(array $data){
+    //     $data = $this->passwordHash2($data);
+    //     $this->db->table('users')->insert($data);
+    // }
+
+    // public function update_user(array $data, int $id){
+    //     $data = $this->passwordHash2($data);
+        
+    //     $this->db->table('users')->where('id',$id)->update($data);
+    // }
+
+    // protected function passwordHash2(array $data){
+    //     if (isset($data['password'])) {
+    //         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    //     }
+
+    //     return $data;
+    // }
 }

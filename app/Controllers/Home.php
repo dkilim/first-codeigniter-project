@@ -18,6 +18,8 @@ class Home extends BaseController {
             return redirect()->to('/profile');
         }
 
+       
+
         if($this->request->getMethod()=='post'){
             // validation 
 
@@ -116,10 +118,10 @@ class Home extends BaseController {
                     'zip' => $this->request->getVar('zip'),
                     'city' => $this->request->getVar('city'),
                     'password' => $this->request->getVar('password'),
-                    'cpassword' => $this->request->getVar('cpassword'),
+                    // 'cpassword' => $this->request->getVar('cpassword'),
                 ];
                 $model_user->save($newUser);
-                
+                                
                 $session = session();
                 $session->setFlashdata('success','Adding user was succesful!');
                 
@@ -197,7 +199,7 @@ class Home extends BaseController {
 				
 
                 $model_user->save($newUser);
-                
+              
                 
                 $session->setFlashdata('success','Successfuly Updated!');
                 
@@ -208,7 +210,8 @@ class Home extends BaseController {
 		}
 		
 
-		$data['user'] = $model_user->where('id', session()->get('id'))->first();
+        // $data['user'] = $model_user->where('id', session()->get('id'))->first();
+        $data['user']=  $model_user->select(session()->get('id'));
 
 
         echo view('templates/headerWithNav',$data);
@@ -227,7 +230,9 @@ class Home extends BaseController {
             return redirect()->to('/');
 		}
 		
-		$data['user'] = $model_user->where('id', session()->get('id'))->first();
+        // $data['user'] = $model_user->where('id', session()->get('id'))->first();
+        $data['user']=  $model_user->select(session()->get('id'));
+
 
         echo view('templates/headerWithNav',$data);
         echo view('users/profile');
